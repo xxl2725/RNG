@@ -3,8 +3,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-
-
 public class EdgeFieldTest{
    EdgeField testObj;
    
@@ -17,21 +15,22 @@ public class EdgeFieldTest{
       testGetNumFigure();
       testGetName();
       testGetTableID();
-      testSetTableID();
+     // testSetTableID();
       testGetTableBound();
-      testSetTableBound();
+     // testSetTableBound();
       testGetFieldBound();
-      testSetFieldBound();
+     // testSetFieldBound();
       testGetDisallowNull();
-      testSetDisallowNull();
+     // testSetDisallowNull();
       testGetIsPrimaryKey();
-      testSetIsPrimaryKey();
+     // testSetIsPrimaryKey();
       testGetDefaultValue();
-      testSetDefaultValue();
+     // testSetDefaultValue();
       testGetVarcharValue();
-      testSetVarcharValue();
+     // testSetVarcharValue();
       testGetDataType();
-      testSetDataType();
+     // testSetDataType();
+      testToString();
    }
    
    @Test
@@ -41,16 +40,17 @@ public class EdgeFieldTest{
 
    @Test
    public void testGetName(){
-     assertEquals("name was intialized to test so it should be test","test",testObj.getName());
+      assertEquals("name was intialized to test so it should be test","test",testObj.getName());
    }
 
    @Test
    public void testGetTableID(){
-    assertEquals("TableID was intialized to 0 so it should be 0",0,testObj.getTableID());
+      assertEquals("TableID was intialized to 0 so it should be 0",0,testObj.getTableID());
    }
-     @Test
+   @Test
    public void testSetTableID(){
-      assertEquals("setTable should be what you set it to",0,testObj.getTableID());
+      testObj.setTableID(3);
+      assertEquals("setTable is set to 3 so it should be 3",3,testObj.getTableID());
    }
    
    @Test
@@ -60,7 +60,8 @@ public class EdgeFieldTest{
    
    @Test
    public void testSetTableBound(){
-      assertEquals("TableBound should be what you set it to",0,testObj.getTableBound());
+      testObj.setTableBound(2);
+      assertEquals("TableBound is set to 2 so it should be 2",2,testObj.getTableBound());
    }
    
    @Test
@@ -70,7 +71,8 @@ public class EdgeFieldTest{
    
    @Test
    public void testSetFieldBound(){
-      assertEquals("FieldBound should be what you set it to",0,testObj.getFieldBound());
+      testObj.setFieldBound(2);
+      assertEquals("FieldBound is set to 2 so it should be 2",2,testObj.getFieldBound());
    }
    
    @Test
@@ -80,7 +82,8 @@ public class EdgeFieldTest{
    
    @Test
    public void testSetDisallowNull(){
-      assertEquals("DisallowNull should be what you set it to",false,testObj.getDisallowNull());
+      testObj.setDisallowNull(true);
+      assertEquals("DisallowNull is set to true so it should be true ",true,testObj.getDisallowNull());
    }
    
    @Test
@@ -90,7 +93,8 @@ public class EdgeFieldTest{
    
    @Test
    public void testSetIsPrimaryKey(){
-      assertEquals("IsPrimaryKey should be what you set it to",false,testObj.getIsPrimaryKey());
+      testObj.setIsPrimaryKey(true);
+      assertEquals("IsPrimaryKey is set to true it should be true",true,testObj.getIsPrimaryKey());
    }
    
    @Test
@@ -100,7 +104,8 @@ public class EdgeFieldTest{
    
    @Test
    public void testSetDefaultValue(){
-      assertEquals("DefaultValue should be what you set it to","",testObj.getDefaultValue());
+      testObj.setDefaultValue("test");
+      assertEquals("DefaultValue should be what you set it to","test",testObj.getDefaultValue());
    }
    
    @Test
@@ -109,7 +114,8 @@ public class EdgeFieldTest{
    }
    @Test
    public void testSetVarcharValue(){
-      assertEquals("DefaultValue should be what you set it to","",testObj.getDefaultValue());
+      testObj.setVarcharValue(2);
+      assertEquals("VarcharValue should be what you set it to 2",2,testObj.getVarcharValue());
    }
    
    @Test
@@ -119,10 +125,38 @@ public class EdgeFieldTest{
    
    @Test
    public void testSetDataType(){
-      assertEquals("DataType should be what you set it to",0,testObj.getDataType());
+      testObj.setDataType(1);
+      assertEquals("DataType should be what you set it to",1,testObj.getDataType());
    }
-
-  
+   
+   @Test
+   public void testGetStrDataType(){
+      String[] test = {"Varchar", "Boolean", "Integer", "Double"};
+      assertEquals("strDataType should have varchar, boolean, integer, and double so the it should be same as the array we create",test,testObj.getStrDataType());
+   }
+   
+   
+   
+   @Test
+   public void testToString(){
+      String test = testObj.getNumFigure() + EdgeConvertFileParser.DELIM +
+         testObj.getName() + EdgeConvertFileParser.DELIM +
+         testObj.getTableID() + EdgeConvertFileParser.DELIM +
+         testObj.getTableBound() + EdgeConvertFileParser.DELIM +
+         testObj.getFieldBound() + EdgeConvertFileParser.DELIM +
+         testObj.getDataType() + EdgeConvertFileParser.DELIM +
+         testObj.getVarcharValue() + EdgeConvertFileParser.DELIM +
+         testObj.getIsPrimaryKey() + EdgeConvertFileParser.DELIM +
+         testObj.getDisallowNull() + EdgeConvertFileParser.DELIM +
+         testObj.getDefaultValue();
+         
+      assertEquals("toString should same",test,testObj.toString());
+   
+      
+   }
+ 
+   
+     
 
 
 }
